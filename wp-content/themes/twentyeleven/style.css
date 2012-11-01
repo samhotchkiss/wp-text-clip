@@ -321,7 +321,7 @@ body, input, textarea {
 	line-height: 1.625;
 }
 body {
-	background: #444;
+	background: red;
 }
 #page {
 	background: #fff;
