@@ -315,13 +315,13 @@ body {
 ----------------------------------------------- */
 
 body, input, textarea {
-	color: red;
+	color: #373737;
 	font: 15px "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight: 300;
 	line-height: 1.625;
 }
 body {
-	background: #e2e2e2;
+	background: red;
 }
 #page {
 	background: #fff;
