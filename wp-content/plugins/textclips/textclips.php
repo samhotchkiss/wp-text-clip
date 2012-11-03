@@ -25,7 +25,7 @@ License:  GPL2
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-    define( 'TEXTCLIP_PLUGIN_PATH', plugin_dir_path(__FILE__) );
+    define( 'TEXTCLIP_PLUGIN_PATH', plugin_dir_url(__FILE__) );
 
 
     function roccos_scripts() {
