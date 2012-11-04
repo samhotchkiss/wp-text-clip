@@ -54,19 +54,20 @@ function textclip_init() {
 }
 
 function add_textclip_meta_boxes() {
-    // make a meta box for the 'Show Edit Link' option
+    // make a meta box for the 'Show Edit Link' option to the side menu
     add_meta_box( 
         'textclip_edit_link',
         'Edit Link',
         'textclip_edit_link_html',
-        'textclip' 
+        'textclip',
+        'side' 
     );
 }
 
 function textclip_edit_link_html() {
     // echo the html for the 'Show Edit Link' option
     $checked = ' checked="checked"'; // option is pre checked
-    echo '<label for="show_edit_link">Show Edit Link</label>';
+    echo '<label for="show_edit_link">Show Edit Link</label><br />';
     echo '<input type="checkbox" name="show_edit_link"'.$checked.'> Yes, show an edit link';
 }
  
