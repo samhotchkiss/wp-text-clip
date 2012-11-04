@@ -64,13 +64,13 @@ function add_textclip_meta_boxes() {
     );
 }
 
-function textclip_edit_link_html() {
+function textclip_edit_link_html($post) {
     // Use nonce for verification
     wp_nonce_field( plugin_basename( __FILE__ ), 'textclip_save' );
     // echo the html for the 'Show Edit Link' option
     $checked = ' checked="checked"'; // option is pre checked
     $show_edit_link = get_post_meta($post_id, 'textclip_show_edit_link', true);
-    exit( $post->ID );
+    exit( print_r($post));
     if($show_edit_link=='no')
         $checked = '';
     echo '<label for="show_edit_link">Show Edit Link</label><br />';
