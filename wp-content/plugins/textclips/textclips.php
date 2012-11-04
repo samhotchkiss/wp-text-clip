@@ -25,16 +25,29 @@ License:  GPL2
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-    define( 'TEXTCLIP_PLUGIN_PATH', plugin_dir_url(__FILE__) );
+ define( 'TEXTCLIP_PLUGIN_PATH', plugin_dir_url(__FILE__) );
 
+function textclip_init() {
+  $labels = array(
+    'name' => __('Text Clips'),
+    'singular_name' => __('Text Clip')
 
-    function roccos_scripts() {
-	wp_enqueue_script(
-		'testingscript',
-		TEXTCLIP_PLUGIN_PATH. 'test.js'
-	);
+  );
+  $args = array(
+    'labels' => $labels,
+    'public' => false,
+    'exclude_from_seart' => true,
+    'publicly_queryable' => true,
+    'show_ui' => true, 
+    'show_in_nav_menus' => false,
+    'show_in_menu' => true, 
+    'query_var' => true,
+    'menu_position' => 5,
+    'rewrite' => false
+  ); 
+  register_post_type('textclip', $args);
 }
-
-add_action( 'wp_enqueue_scripts', 'roccos_scripts' );
+add_action( 'init', 'textclip_init' );
+ 
 
 ?>
