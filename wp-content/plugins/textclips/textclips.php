@@ -27,7 +27,11 @@ License:  GPL2
 
  define( 'TEXTCLIP_PLUGIN_PATH', plugin_dir_url(__FILE__) );
 
+// register our custom post type, textclip
+ add_action( 'init', 'textclip_init' );
+
 function textclip_init() {
+  // Define Lables
   $labels = array(
     'name' => __('Text Clips'),
     'singular_name' => __('Text Clip')
@@ -35,19 +39,36 @@ function textclip_init() {
   );
   $args = array(
     'labels' => $labels,
-    'public' => false,
-    'exclude_from_seart' => true,
+    'public' => false, // text clips won't appear in the loop
+    'exclude_from_search' => true,
     'publicly_queryable' => true,
     'show_ui' => true, 
     'show_in_nav_menus' => false,
-    'show_in_menu' => true, 
+    'show_in_menu' => true,  // text clips will appear in the admin menu
     'query_var' => true,
+    'register_meta_box_cb' => 'add_textclip_meta_boxes', // create custom meta boxes on the edit post page
     'menu_position' => 5,
     'rewrite' => false
   ); 
   register_post_type('textclip', $args);
 }
-add_action( 'init', 'textclip_init' );
+
+function add_textclip_meta_boxes() {
+    // make a meta box for the 'Show Edit Link' option
+    add_meta_box( 
+        'textclip_edit_link',
+        'Edit Link',
+        'textclip_edit_link_html',
+        'textclip' 
+    );
+}
+
+function textclip_edit_link_html() {
+    // echo the html for the 'Show Edit Link' option
+    $checked = ' checked="checked"'; // option is pre checked
+    echo '<label for="show_edit_link"></label>';
+    echo '<input type="checkbox" name="show_edit_link"'.$checked.'>';
+}
  
 
 ?>
