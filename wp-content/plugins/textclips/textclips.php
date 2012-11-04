@@ -66,8 +66,8 @@ function add_textclip_meta_boxes() {
 function textclip_edit_link_html() {
     // echo the html for the 'Show Edit Link' option
     $checked = ' checked="checked"'; // option is pre checked
-    echo '<label for="show_edit_link"></label>';
-    echo '<input type="checkbox" name="show_edit_link"'.$checked.'>';
+    echo '<label for="show_edit_link">Show Edit Link</label>';
+    echo '<input type="checkbox" name="show_edit_link"'.$checked.'> Yes, show an edit link';
 }
  
 
