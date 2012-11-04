@@ -70,7 +70,7 @@ function textclip_edit_link_html() {
     // echo the html for the 'Show Edit Link' option
     $checked = ' checked="checked"'; // option is pre checked
     $show_edit_link = get_post_meta($post_id, 'textclip_show_edit_link', true);
-    exit( $show_edit_link );
+    exit( $post->ID );
     if($show_edit_link=='no')
         $checked = '';
     echo '<label for="show_edit_link">Show Edit Link</label><br />';
