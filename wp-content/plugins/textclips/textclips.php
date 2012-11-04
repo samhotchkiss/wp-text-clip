@@ -65,10 +65,50 @@ function add_textclip_meta_boxes() {
 }
 
 function textclip_edit_link_html() {
+    // Use nonce for verification
+    wp_nonce_field( plugin_basename( __FILE__ ), 'textclip_save' );
     // echo the html for the 'Show Edit Link' option
     $checked = ' checked="checked"'; // option is pre checked
+    $show_edit_link = get_post_meta($post_id, 'textclip_show_edit_link', true);
+    if(!$show_edit_link)
+        $checked = '';
     echo '<label for="show_edit_link">Show Edit Link</label><br />';
     echo '<input type="checkbox" name="show_edit_link"'.$checked.'> Yes, show an edit link';
+}
+
+// lets make sure our custom data gets saved
+add_action( 'save_post', 'save_textclip_data' );
+
+function save_textclip_data() {
+    // verify if this is an auto save routine. 
+  // If it is our form has not been submitted, so we dont want to do anything
+  if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
+      return;
+
+  // verify this came from the our screen and with proper authorization,
+  // because save_post can be triggered at other times
+
+  if ( !wp_verify_nonce( $_POST['textclip_save'], plugin_basename( __FILE__ ) ) )
+      return;
+
+   // Check permissions
+  if ( 'page' == $_POST['post_type'] ) 
+  {
+    if ( !current_user_can( 'edit_page', $post_id ) )
+        return;
+  }
+  else
+  {
+    if ( !current_user_can( 'edit_post', $post_id ) )
+        return;
+  }
+   // OK, we're authenticated: we need to find and save the data
+
+  $textclip_show_edit_link = (isset($_POST['show_edit_link'])) ? true : false;
+  // either update or add the show_edit_link bolean
+  if(!update_post_meta($post_id, 'textclip_show_edit_link', $textclip_show_edit_link))
+    add_post_meta($post_id, 'textclip_show_edit_link', $textclip_show_edit_link)
+
 }
  
 
