@@ -70,8 +70,7 @@ function textclip_edit_link_html() {
     // echo the html for the 'Show Edit Link' option
     $checked = ' checked="checked"'; // option is pre checked
     $show_edit_link = get_post_meta($post_id, 'textclip_show_edit_link', true);
-    exit(print_r($show_edit_link));
-    if(!$show_edit_link)
+    if($show_edit_link=='no')
         $checked = '';
     echo '<label for="show_edit_link">Show Edit Link</label><br />';
     echo '<input type="checkbox" name="show_edit_link"'.$checked.'> Yes, show an edit link';
@@ -105,7 +104,7 @@ function save_textclip_data() {
   }
    // OK, we're authenticated: we need to find and save the data
 
-  $textclip_show_edit_link = (isset($_POST['show_edit_link'])) ? true : false;
+  $textclip_show_edit_link = (isset($_POST['show_edit_link'])) ? 'yes' : 'no';
   // either update or add the show_edit_link bolean
   if(!update_post_meta($post_id, 'textclip_show_edit_link', $textclip_show_edit_link))
     add_post_meta($post_id, 'textclip_show_edit_link', $textclip_show_edit_link);
