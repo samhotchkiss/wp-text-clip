@@ -107,7 +107,7 @@ function save_textclip_data($post_id) {
   $textclip_show_edit_link = ($_POST['show_edit_link']=='yes') ? 'yes' : 'no';
   // either update or add the show_edit_link bolean
   if(!update_post_meta($post_id, 'textclip_show_edit_link', $textclip_show_edit_link))
-    add_post_meta($post_id 'textclip_show_edit_link', $textclip_show_edit_link);
+    add_post_meta($post_id, 'textclip_show_edit_link', $textclip_show_edit_link);
 
 }
  
