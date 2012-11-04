@@ -79,7 +79,7 @@ function textclip_edit_link_html($post) {
 // lets make sure our custom data gets saved
 add_action( 'save_post', 'save_textclip_data' );
 
-function save_textclip_data() {
+function save_textclip_data($post) {
     // verify if this is an auto save routine. 
   // If it is our form has not been submitted, so we dont want to do anything
   if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
@@ -107,8 +107,8 @@ function save_textclip_data() {
   $textclip_show_edit_link = ($_POST['show_edit_link']=='yes') ? 'yes' : 'no';
   exit($textclip_show_edit_link);
   // either update or add the show_edit_link bolean
-  if(!update_post_meta($post_id, 'textclip_show_edit_link', $textclip_show_edit_link))
-    add_post_meta($post_id, 'textclip_show_edit_link', $textclip_show_edit_link);
+  if(!update_post_meta($post->ID, 'textclip_show_edit_link', $textclip_show_edit_link))
+    add_post_meta($post_id->, 'textclip_show_edit_link', $textclip_show_edit_link);
 
 }
  
