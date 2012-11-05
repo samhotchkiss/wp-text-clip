@@ -70,7 +70,7 @@ function textclip_edit_link_html($post) {
     // echo the html for the 'Show Edit Link' option
     
     $checked = ' checked="checked"'; // option is pre checked by default
-    $show_edit_link = get_post_meta($post->ID, 'textclip_show_edit_link', true);
+    $show_edit_link = get_post_meta($post->ID, '_textclip_show_edit_link', true);
     if($show_edit_link=='no') // unless option was previously set to 'no'
         $checked = '';
     echo '<label for="show_edit_link">Show Edit Link</label><br />';
@@ -108,8 +108,8 @@ function save_textclip_data($post_id) {
   // show edit link is either 'yes' or 'no'
   $textclip_show_edit_link = ($_POST['show_edit_link']=='yes') ? 'yes' : 'no';
   // either update or add the show_edit_link bolean
-  if(!update_post_meta($post_id, 'textclip_show_edit_link', $textclip_show_edit_link))
-    add_post_meta($post_id, 'textclip_show_edit_link', $textclip_show_edit_link);
+  if(!update_post_meta($post_id, '_textclip_show_edit_link', $textclip_show_edit_link))
+    add_post_meta($post_id, '_textclip_show_edit_link', $textclip_show_edit_link);
 
 }
  
