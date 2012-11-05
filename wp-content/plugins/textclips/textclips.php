@@ -115,7 +115,8 @@ function save_textclip_data($post_id) {
 
 // call this function to access a text clip from anywhere in wordpress
 function get_text_clip($clip_id) {
-  $clip = get_post($clip_id)->post_content;
+  $clip = get_post($clip_id);
+  return $clip;
   global $current_user;
 
   // checks for extra styling on the clip
@@ -129,7 +130,7 @@ function get_text_clip($clip_id) {
 
     $clip = '<span style="'.$style.'">'.$clip.'</span>';
   } */
-  
+
   // logged in administrators will not ever see an edit link
   if(current_user_can( 'manage_options' )) {
     return $clip;

@@ -15,7 +15,8 @@ get_header(); ?>
 				<?php endwhile; // end of the loop. ?>
 
 				<div class='textclip'>
-					<?php echo get_text_clip(32); ?>
+					<?php $contact_textclip = get_text_clip(32); ?>
+					<?php exit(print_r($contact_textclip)); ?>
 				</div>
 
 			</div><!-- #content -->
