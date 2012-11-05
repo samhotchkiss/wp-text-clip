@@ -16,7 +16,7 @@ get_header(); ?>
 
 				<div class='textclip'>
 					<?php $contact_textclip = get_text_clip(32); ?>
-					<?php exit(print_r($contact_textclip)); ?>
+					<?php echo $contact_textclip; ?>
 				</div>
 
 			</div><!-- #content -->

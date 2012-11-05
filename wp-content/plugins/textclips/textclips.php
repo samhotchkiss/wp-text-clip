@@ -115,8 +115,7 @@ function save_textclip_data($post_id) {
 
 // call this function to access a text clip from anywhere in wordpress
 function get_text_clip($clip_id) {
-  $clip = get_post($clip_id);
-  return $clip;
+  $clip = get_post($clip_id)->post_content;
   global $current_user;
 
   // checks for extra styling on the clip
