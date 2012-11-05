@@ -112,6 +112,37 @@ function save_textclip_data($post_id) {
     add_post_meta($post_id, '_textclip_show_edit_link', $textclip_show_edit_link);
 
 }
+
+// call this function to access a text clip from anywhere in wordpress
+function get_text_clip($clip_id) {
+  $clip = get_post($clip_id)->post_content;
+  global $current_user;
+
+  // checks for extra styling on the clip
+  /* this part is not implemented yet
+  if(get_post_meta($clip_id, 'extra_styling', true) == 1) {
+    $style = '';
+    $color = get_post_meta($clip_id, 'color', true);
+    if($color) { 
+      $style .= 'color:'.$color.';';
+    }
+
+    $clip = '<span style="'.$style.'">'.$clip.'</span>';
+  } */
+  
+  // logged in administrators will not ever see an edit link
+  if(current_user_can( 'manage_options' )) {
+    return $clip;
+  }
+
+  $show_link = get_post_meta($clip_id, '_textclip_show_edit_link', true);
+  
+  if($show_link=='yes') {
+    $clip = $clip . ' <a href="/wp-admin/post.php?post='.$clip_id.'&action=edit" class="text_clip_edit_link" target="blank">edit</a>';
+  }
+
+  return $clip;
+}
  
 
 ?>
